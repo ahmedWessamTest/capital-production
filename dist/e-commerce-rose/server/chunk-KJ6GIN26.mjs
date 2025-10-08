@@ -1,0 +1,2 @@
+import './polyfills.server.mjs';
+import{Dc as i,I as n,M as a,ad as o}from"./chunk-UQC3G75Y.mjs";var s=class r{_http=a(i);baseUrl=o.BASE_URL;submitCorporateUnit(e,t){return this._http.post(`${this.baseUrl}${e}/store`,t)}deleteCorporateUnit(e,t){return this._http.post(`${this.baseUrl}${e}/delete`,{policy_id:t})}getCorporateUnit(e,t){return this._http.post(`${this.baseUrl}${e}/empolyee-policy`,{policy_id:t})}static \u0275fac=function(t){return new(t||r)};static \u0275prov=n({token:r,factory:r.\u0275fac,providedIn:"root"})};export{s as a};
