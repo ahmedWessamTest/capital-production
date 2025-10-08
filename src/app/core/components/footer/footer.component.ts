@@ -12,7 +12,7 @@ import { PhoneFormatPipe } from '@core/pipes/phone-format.pipe';
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [RouterModule, CommonModule, TranslateModule,PhoneFormatPipe],
+  imports: [RouterModule, CommonModule, TranslateModule, PhoneFormatPipe],
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css']
 })

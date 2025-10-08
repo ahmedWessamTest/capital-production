@@ -1,7 +1,7 @@
 
-import { Component, HostListener, ViewChild, OnInit, OnDestroy, AfterViewInit, Input, OnChanges, SimpleChanges, ChangeDetectionStrategy, ChangeDetectorRef, PLATFORM_ID, Inject } from '@angular/core';
+import { Component, HostListener, ViewChild, OnInit, OnDestroy, AfterViewInit, Input, OnChanges, SimpleChanges, ChangeDetectionStrategy, ChangeDetectorRef, PLATFORM_ID, Inject, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { CommonModule } from '@angular/common';
+import { CommonModule,NgOptimizedImage } from '@angular/common';
 import { CarouselModule, OwlOptions, SlidesOutputData, CarouselComponent } from 'ngx-owl-carousel-o';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Subscription, Subject } from 'rxjs';
@@ -13,7 +13,7 @@ import { Slider, UpdatedGenericDataService } from '@core/services/updated-genera
 @Component({
   selector: 'app-hero-section',
   standalone: true,
-  imports: [CommonModule, CarouselModule],
+  imports: [CommonModule, CarouselModule, NgOptimizedImage],
   templateUrl: './hero-section.component.html',
   styleUrls: ['./hero-section.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -48,11 +48,11 @@ export class HeroSectionComponent implements OnInit, OnDestroy, AfterViewInit, O
   @ViewChild('owlCar') owlCar!: CarouselComponent;
   @Input() sliders: Slider[] = [];
 
-  slides: { id: string; image: string; alt: string; en_title: string; ar_title: string; en_description: string; ar_description: string; en_buttonText: string; ar_buttonText: string }[] = [];
-  currentLanguage: string = 'en';
+  slides = signal<{ id: string; image: string; alt: string; en_title: string; ar_title: string; en_description: string; ar_description: string; en_buttonText: string; ar_buttonText: string }[]>([]) ;
+  currentLanguage = signal<string>('en') ;
   private readonly IMAGE_URL: string = API_CONFIG.BASE_URL_IMAGE;
-  isLoading: boolean = true;
-  private rafId: number | null = null;
+  isLoading = signal<boolean>(true);
+  private rafId = signal<number>(0);
 
   customOptions: OwlOptions = {
     loop: true,
@@ -105,7 +105,7 @@ aboutDownload: any;
     this.calculateSliderHeight();
     
     this.languageSubscription = this.languageService.currentLanguage$.subscribe(lang => {
-      this.currentLanguage = lang;
+      this.currentLanguage.set(lang) ;
       this.updateCarouselDirection(lang);
       this.cdr.markForCheck();
     });
@@ -145,8 +145,8 @@ aboutDownload: any;
   }
 
   ngOnDestroy(): void {
-    if (this.rafId) {
-      cancelAnimationFrame(this.rafId);
+    if (this.rafId()) {
+      cancelAnimationFrame(this.rafId());
     }
     if (this.languageSubscription) {
       this.languageSubscription.unsubscribe();
@@ -161,10 +161,12 @@ aboutDownload: any;
 
   private safeRequestAnimationFrame(callback: () => void): void {
     if (isPlatformBrowser(this.platformId)) {
-      this.rafId = requestAnimationFrame(() => {
-        callback();
-        this.rafId = null;
-      });
+      this.rafId.set(
+        requestAnimationFrame(() => {
+          callback();
+          this.rafId.set(0);
+        })
+      ) 
     } else {
       callback();
     }
@@ -172,7 +174,7 @@ aboutDownload: any;
 
   private updateSlides(): void {
     if (this.sliders && this.sliders.length > 0) {
-      this.slides = this.sliders.map((slider, index) => ({
+      this.slides.set(this.sliders.map((slider, index) => ({
         id: `slide-${slider.id}`,
         image: this.IMAGE_URL + slider.image,
         alt: `Illustration for ${slider.en_title}`,
@@ -182,23 +184,24 @@ aboutDownload: any;
         ar_description: slider.ar_description,
         en_buttonText: 'Download The App',
         ar_buttonText: 'تحميل التطبيق'
-      }));
+      }))) 
+      
     } else {
-      this.slides = [];
+      this.slides.set([]) ;
     }
   }
 
 
   private preloadCriticalImages(): void {
-    if (this.slides.length > 0) {
-      const criticalImages = this.slides.slice(0, 2);
+    if (this.slides().length > 0) {
+      const criticalImages = this.slides().slice(0, 2);
       criticalImages.forEach((slide, index) => {
         const img = new Image();
         img.src = slide.image;
         if (index === 0) {
           img.fetchPriority = 'high';
           img.onload = () => {
-            if (this.isLoading) {
+            if (this.isLoading()) {
               this.onImageLoad(0);
             }
           };
@@ -214,8 +217,8 @@ aboutDownload: any;
     const isRtl = lang === 'ar';
     if (this.customOptions.rtl !== isRtl) {
       this.customOptions = { ...this.customOptions, rtl: isRtl };
-      if (this.owlCar && !this.isLoading) {
-        const currentSlideId = this.slides[this.activeSlideIndex]?.id || this.slides[0]?.id;
+      if (this.owlCar && !this.isLoading()) {
+        const currentSlideId = this.slides()[this.activeSlideIndex]?.id || this.slides()[0]?.id;
         if (currentSlideId) {
           this.owlCar.to(currentSlideId);
         }
@@ -238,7 +241,7 @@ aboutDownload: any;
   }
 
   moveToSlide(carousel: CarouselComponent, id: string): void {
-    if (this.isLoading) return;
+    if (this.isLoading()) return;
     
     this.isAnimating = true;
     carousel.to(id);
@@ -283,46 +286,42 @@ aboutDownload: any;
     if (isPlatformBrowser(this.platformId)) {
       const liveRegion = document.getElementById('carousel-live-region');
       if (liveRegion) {
-        const slideIndex = this.slides.findIndex(s => s.id === slideId);
+        const slideIndex = this.slides().findIndex(s => s.id === slideId);
         if (slideIndex !== -1) {
-          liveRegion.textContent = `Now on slide ${slideIndex + 1} of ${this.slides.length}: ${this.currentLanguage === 'en' ? this.slides[slideIndex].en_title : this.slides[slideIndex].ar_title}.`;
+          liveRegion.textContent = `Now on slide ${slideIndex + 1} of ${this.slides().length}: ${this.currentLanguage() === 'en' ? this.slides()[slideIndex].en_title : this.slides()[slideIndex].ar_title}.`;
         }
       }
     }
   }
 
   getTitle(slide: { en_title: string; ar_title: string }): string {
-    return this.currentLanguage === 'en' ? slide.en_title : slide.ar_title;
+    return this.currentLanguage() === 'en' ? slide.en_title : slide.ar_title;
   }
 
   getDescription(slide: { en_description: string; ar_description: string }): string {
-    return this.currentLanguage === 'en' ? slide.en_description : slide.ar_description;
+    return this.currentLanguage() === 'en' ? slide.en_description : slide.ar_description;
   }
 
   getButtonText(slide: { en_buttonText: string; ar_buttonText: string }): string {
-    return this.currentLanguage === 'en' ? slide.en_buttonText : slide.ar_buttonText;
-  }
-
-  trackBySlideId(index: number, slide: { id: string }): string {
-    return slide.id;
+    return this.currentLanguage() === 'en' ? slide.en_buttonText : slide.ar_buttonText;
   }
 
   private loadedImages: Set<number> = new Set<number>();
 
   onImageLoad(index: number): void {
     this.loadedImages.add(index);
-    if (index === 0 && this.isLoading) {
-      this.isLoading = false;
+    if (index === 0 && this.isLoading()) {
+      this.isLoading.set(false);
       this.cdr.markForCheck();
     }
   }
 
   private setLoadingComplete(): void {
-    if (this.slides && this.slides.length > 0) {
+    if (this.slides() && this.slides().length > 0) {
       this.preloadCriticalImages();
       setTimeout(() => {
-        if (this.isLoading) {
-          this.isLoading = false;
+        if (this.isLoading()) {
+          this.isLoading.set(false);
           this.cdr.markForCheck();
         }
       }, 100);

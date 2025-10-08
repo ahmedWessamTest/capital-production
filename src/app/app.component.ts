@@ -1,5 +1,5 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Component, OnInit, Inject, PLATFORM_ID, inject } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID, inject, signal } from '@angular/core';
 import { RouterModule, Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -29,7 +29,7 @@ import { WhatsappFloatComponent } from "./website-pages/floating-whatsapp/floati
 })
 export class AppComponent implements OnInit {
   title = 'angular-portfolio';
-
+  langChanged = signal<boolean>(false);
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: false,
@@ -61,13 +61,21 @@ export class AppComponent implements OnInit {
   ) {}
 
   notificationService = inject(NotificationService);
+  switchLanguage(lang: string) {
+  this.translationService.use(lang);
+  localStorage.setItem('language', lang);
+
+  const html = document.documentElement;
+  html.lang = lang;
+  html.dir = lang === 'ar' ? 'rtl' : 'ltr';
+}
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
       // Initialize language
-      const savedLang = localStorage.getItem('language') || 'ar';
-      this.translationService.use(savedLang);
-  
+      const savedLang: string | undefined = localStorage.getItem('language') || 'ar';
+      this.switchLanguage(savedLang);
+  this.langChanged.set(true);
       // Scroll to top on route change
       this._router.events.pipe(
         filter(event => event instanceof NavigationEnd)
