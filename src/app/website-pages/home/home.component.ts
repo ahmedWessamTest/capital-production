@@ -60,8 +60,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.subscription = this.genericDataService.homeData$.subscribe((data: HomeDataResponse | null) => {
       if (data) {
-        console.log(data);
-
         this.partners = data.partners.map(partner => ({
           ar_name: partner.ar_partner_name,
           en_name: partner.en_partner_name,

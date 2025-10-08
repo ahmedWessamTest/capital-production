@@ -115,9 +115,7 @@ passwordMatchValidator(group: FormGroup) {
   const rePassword = group.get('rePassword')?.value;
   return password === rePassword ? null : { passwordMismatch: true };
 }
-  submission() {
-    console.log(this.setPassForm);
-    
+  submission() {    
     this.formSubmitted.set(true);
     if (this.setPassForm.invalid) {
       this.setPassForm.markAllAsTouched();

@@ -136,7 +136,6 @@ export class RegisterComponent implements OnInit {
       },
       error: (error) => {
         this.isLoading.set(false);
-        console.log(error);
         const backendErrors = error?.error?.errors || {};
         const errorMessages: string[] = [];
         const errorMapping: Record<string,string> = {

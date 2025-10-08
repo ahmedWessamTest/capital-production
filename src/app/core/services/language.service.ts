@@ -32,10 +32,7 @@ export class LanguageService {
         const url = this.router.url;
         const segments = url.split('/');
         const routeLang = segments[1] || 'en';
-
-        console.log('Current URL:', url);
-        console.log('Language detected:', routeLang);
-
+        
         this.setLanguage(routeLang);
 
         let currentRoute = this.route.root;

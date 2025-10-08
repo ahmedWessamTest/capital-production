@@ -87,9 +87,6 @@ export class CommentsPageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.currentLang$.subscribe((lang) => {
       this.isRTL = lang === 'ar';
-      console.log("direction:",this.isRTL);
-      
-      console.log('Current Language:', lang); // Debug: Log language changes
     });
     this.route.paramMap.subscribe((params) => {
       const id = params.get('policyId');
@@ -107,7 +104,6 @@ export class CommentsPageComponent implements OnInit, OnDestroy {
       ) {
         this.policyId = +id;
         this.policyType = type === 'job'?'jop':type;
-        console.log(this.policyType);
         
         this.fetchComments();
       } else {
@@ -139,7 +135,6 @@ export class CommentsPageComponent implements OnInit, OnDestroy {
           this.canComment =
             response.policy.active_status === 'pending' &&
             response.policy.comments.length > 0;
-          console.log('canComment', response.policy.comments);
           const latestAdminComment = response.policy.comments
             .filter((c) => c.user_role !== 'user')
             .sort(
@@ -238,7 +233,6 @@ export class CommentsPageComponent implements OnInit, OnDestroy {
       !this.policyType
     )
       return;
-    console.log('valid comment');
     this.isSubmitting = true;
 
     const userData = this.authStorage.getUserData();

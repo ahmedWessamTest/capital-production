@@ -119,9 +119,7 @@ export class CustomeDropMenuComponent implements OnChanges {
     // Reset selected option when options change (e.g., when switching insurance types)
     if (changes['options']) {
       this.selectedOption = undefined;
-    }
-    console.log(changes);
-    
+    }    
     // Auto-open dropdown when loading starts
     if (changes['isLoading'] && this.isLoading) {
       this.isOpen = true;

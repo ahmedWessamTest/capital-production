@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
   imports: [CommonModule, HeadingComponent, TranslateModule],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AboutComponent implements OnInit, OnDestroy, OnChanges {
+export class AboutComponent implements OnInit, OnDestroy {
   aboutData$: Observable<AboutDataResponse | null>;
   isArabic: boolean = false;
   @Input() isHome: boolean = false;
@@ -35,12 +35,6 @@ export class AboutComponent implements OnInit, OnDestroy, OnChanges {
   ) {
     this.aboutData$ = this.genericDataService.aboutData$;
     
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['isHome']) {
-      console.log('isHome changed:', this.isHome);
-    }
   }
 
   ngOnInit(): void {

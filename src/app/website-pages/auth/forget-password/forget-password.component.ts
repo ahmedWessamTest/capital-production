@@ -99,7 +99,6 @@ export class ForgetPasswordComponent implements OnInit,OnDestroy {
     this._authService.sendOTp(email).pipe(takeUntil(this.destroy$)).subscribe({
       next: (response: any) => {
         this.isLoading.set(false);
-        console.log(response.success);
         if (response.success && response.success.includes('Successfully')) {
           let lang = '';
           this.currentLang$.pipe(takeUntil(this.destroy$)).subscribe((next) => (lang = next));

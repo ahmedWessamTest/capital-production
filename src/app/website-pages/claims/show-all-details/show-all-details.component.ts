@@ -104,10 +104,8 @@ export class ShowAllDetailsComponent implements OnInit {
         next: (response: PolicyChoicesResponse) => {
           const policyData = (response as any).ploicy || response.policy;
           this.policyChoices = policyData;
-          console.log(this.policyChoices);
           
           this.isLoading = false;
-          console.log('Policy Choices:', this.policyChoices);
         },
         error: (err) => {
           this.error = this.translate.instant(
@@ -225,7 +223,6 @@ export class ShowAllDetailsComponent implements OnInit {
 
   getPolicyDetailsFields(): { label: string; value: any }[] {
     if (!this.policyDetails || !this.policyType) return [];
-    console.log('Policy Details:', this.policyDetails);
     
     const fieldsToExclude = [
       'id',

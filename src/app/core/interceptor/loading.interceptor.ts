@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 export class LoggingInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // أضف معلومات مخصصة لتحديد المصدر
-    console.log(`Request URL: ${req.url} | Initiated from: ${req.headers.get('X-Component-Source') || 'Unknown'}`);
     return next.handle(req);
   }
 }

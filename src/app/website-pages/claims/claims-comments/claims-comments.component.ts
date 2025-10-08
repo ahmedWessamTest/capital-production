@@ -135,7 +135,6 @@ export class ClaimsCommentsComponent implements OnInit, OnDestroy {
           this.canComment =
             response.claim.status === 'pending' &&
             response.claim.comments.length > 0;
-          console.log('claim comments', response.claim.comments);
           const latestAdminComment = response.claim.comments
             .filter((c) => c.user_role !== 'user')
             .sort(
@@ -143,7 +142,6 @@ export class ClaimsCommentsComponent implements OnInit, OnDestroy {
                 new Date(b.created_at as string).getTime() -
                 new Date(a.created_at as string).getTime()
             )[0];
-          console.log('latestAdminComment', latestAdminComment);
           if (latestAdminComment) {
             this.receiver = {
               id: latestAdminComment.user_id,
@@ -221,11 +219,7 @@ export class ClaimsCommentsComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log('comment', this.commentForm.valid);
-    console.log('receiver', this.receiver);
-    console.log('claimId', this.claimId);
-    console.log('claimType', this.claimType);
-    console.log('canComment', this.canComment);
+
     if (
       !this.canComment ||
       !this.commentForm.valid ||

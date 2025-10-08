@@ -466,7 +466,6 @@ onVerify() {
     this.startResendTimer();
     this.canResend.set(false);
     this.alertConfig$.pipe(take(1)).subscribe((config) => {
-      console.log("resend config:",config);
       if (config?.onResend) {
         Promise.resolve().then(()=> config.onResend?.())
       }

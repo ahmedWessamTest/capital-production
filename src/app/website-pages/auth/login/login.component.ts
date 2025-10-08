@@ -90,9 +90,7 @@ export class LoginComponent implements OnInit,OnDestroy {
     });
   }
 loggedInSuccessfully(response:any):void {
-  
-  console.log(response);
-  
+    
 this.isLoading.set(false);
         let lang = '';
         this.currentLang$.pipe(takeUntil(this.destroy$)).subscribe((next) => (lang = next));

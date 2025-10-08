@@ -78,7 +78,6 @@ selectedOption: any;
     if (governorate && Object.keys(governorate).length > 0) {
       this.selectedGovernorate = governorate;
       this.governorateError = ''; // مسح الخطأ عند الاختيار
-      console.log('Selected Governorate:', governorate);
     } else {
       this.selectedGovernorate = null;
     }
@@ -89,7 +88,6 @@ selectedOption: any;
     if (carType && Object.keys(carType).length > 0) {
       this.selectedCarType = carType;
       this.carTypeError = ''; // مسح الخطأ عند الاختيار
-      console.log('Selected Car Type:', carType);
     } else {
       this.selectedCarType = null;
     }
@@ -128,8 +126,6 @@ selectedOption: any;
         timestamp: new Date()
       };
 
-      console.log('Saving data:', formData);
-
       // محاكاة API call
       setTimeout(() => {
         this.isLoading = false;
@@ -148,7 +144,6 @@ selectedOption: any;
     this.selectedCarType = null;
     this.governorateError = '';
     this.carTypeError = '';
-    console.log('Form reset');
   }
 
   resetForm() {

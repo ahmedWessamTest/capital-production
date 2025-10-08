@@ -159,7 +159,6 @@ export class ClientsComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit(): void {
     this.updateClientsList();
-    console.log(this.clientsList);
     this.languageSubscription = this.languageService.currentLanguage$.subscribe(lang => {
       this.isRtl = lang === 'ar';
       this.customOptions = { ...this.customOptions, rtl: this.isRtl };
@@ -184,7 +183,6 @@ export class ClientsComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   private updateClientsList(): void {
-    console.log(this.clients);
     this.clientsList = this.clients.length > 0
       ? this.clients
       : [

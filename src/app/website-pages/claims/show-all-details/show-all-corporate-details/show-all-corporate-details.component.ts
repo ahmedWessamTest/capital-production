@@ -52,8 +52,6 @@ export class ShowAllCorporateDetailsComponent {
           this.maxUnits = unitsData[0].company_employee_number
         }
         this.policyUnits = res.empolyeepolicy;
-            console.log(this.policyUnits);
-
        
         this.loading = false;
         const options = this.itemsPerPageOptions;

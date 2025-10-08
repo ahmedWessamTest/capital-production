@@ -112,7 +112,6 @@ aboutDownload: any;
 
     if(isPlatformBrowser(this.platformId)){
       this.aboutDownload = JSON.parse(localStorage.getItem('aboutDownload') || '[]').android_download_link;
-      console.log(this.aboutDownload)
     }
     if (this.sliders && this.sliders.length > 0) {
       this.updateSlides();

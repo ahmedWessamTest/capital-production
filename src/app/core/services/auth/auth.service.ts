@@ -7,7 +7,6 @@ import { LanguageService } from '../language.service';
 import { API_CONFIG } from '../../conf/api.config';
 import { isPlatformBrowser } from '@angular/common'; // Import isPlatformBrowser
 import { Auth, GoogleAuthProvider, signInWithPopup, signOut, User } from '@angular/fire/auth';
-import { toFormData } from '@core/utils/form-utils';
 
 export interface ILogin {
   email: string;
@@ -356,10 +355,6 @@ export class AuthService {
   }
 
   updateUserData(data:any):Observable<any> {
-    return this._http.post<any>(`${this.baseUrl}${API_CONFIG.AUTH.UPDATE_USER_DATA}`,data).pipe(
-      tap(response => {
-        console.log(response);
-      })
-    );
+    return this._http.post<any>(`${this.baseUrl}${API_CONFIG.AUTH.UPDATE_USER_DATA}`,data)
   } 
 }

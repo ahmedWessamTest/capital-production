@@ -27,10 +27,8 @@ export class OtpTimeGuard implements CanActivate {
     const threeMinutes = 3 * 60 * 1000; // 3 minutes in milliseconds
     let currentLang = '';
     this.languageService.currentLanguage$.subscribe((lang) => {
-      console.log("lang",lang)
       currentLang = lang
     }); // Get the current language
-console.log("currentLang",currentLang)
     // Define messages manually based on language
     const otpExpiredMessage_en = 'Your OTP verification has expired. Please request a new one.';
     const otpExpiredMessage_ar = 'لقد انتهت صلاحية التحقق من OTP الخاص بك. يرجى طلب رمز جديد.'; // Arabic translation

@@ -393,10 +393,8 @@ email: false,
     const userData = this.authStorage.getUserData() as any;
 
     if (userData) {
-      console.log(userData);
       
       const { name:fullName, email, phone: phoneNumber } = userData ;
-      console.log(fullName,email,phoneNumber);
       
       this.claimForm.patchValue({ fullName, email, phoneNumber });
 
@@ -408,17 +406,8 @@ email: false,
         email: !!userData.email,
         phoneNumber: !!userData.phone,
       };
-      console.log(this.userDataStatus);
       
 this.claimForm.markAllAsTouched();
-      // fields.forEach(field => {
-      //   const control = this.claimForm.get(field);
-      //   if (this.userDataStatus[field] && control) {
-      //     control.disable({ emitEvent: false }); // ✅ دي اللي بتقفل فعلاً
-      //     control.clearValidators();             // نشيل الفاليديشن
-      //     control.updateValueAndValidity();      // نعمل recheck
-      //   }
-      // });
     }
   }
 }
@@ -476,7 +465,6 @@ this.claimForm.markAllAsTouched();
           }));
           break;
           case 'jop':
-          console.log(this.userPolicies);
           policies = this.userPolicies.jop;
           this.dropdownOptions = policies.map((policy) => ({
             title: policy['name'],
@@ -839,7 +827,6 @@ onCarModelChange(event:any):void{
 const selectedValue = event.target.value;
     const otherOption = 'Others';  
   this.showCustomCarModelsId = selectedValue === otherOption;
-  console.log(this.showCustomCarBrandId);
   if(this.showCustomCarBrandId) {
       this.claimForm.get('custom_car_model_id')?.setValidators([Validators.required])
     } else {
@@ -882,7 +869,6 @@ updateUserData(): void {
       next: res => {
         const userData = this.authService.getUserData();
         let dataNeedUpdate = formDataToObject(updateFormData);
-        console.log("updated user data", dataNeedUpdate);
         dataNeedUpdate = {name:dataNeedUpdate['fullName'],user_id:dataNeedUpdate['user_id']}
         
         if (userData) {
@@ -897,7 +883,6 @@ updateUserData(): void {
 }
 }
   onNextStep(): void {
-    console.log(this.claimForm);
     this.claimForm.markAllAsTouched();
     const step1Fields = ['fullName', 'email', 'phoneNumber'];
     const isStep1Valid = step1Fields.every(
@@ -958,7 +943,6 @@ updateUserData(): void {
           )
           .subscribe({
             next: (response: any) => {
-              console.log('User registered successfully:', response);
               this.authStorage.saveUserData(response.user);
               this.claimForm.patchValue({ user_id: response.user.id });
               this.fetchUserPolicies().subscribe({
