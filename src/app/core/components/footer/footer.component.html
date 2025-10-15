@@ -78,24 +78,22 @@
 </div>
 <div class="footer-bg  z-10 relative">
   <div
-    class="flex flex-col lg:flex-row lg:justify-around lg:items-center w-full  mb-15 text-white gap-8 lg:gap-4"
+    class="flex flex-col lg:flex-row lg:justify-around lg:items-center px-2 w-full  mb-15 text-white gap-8 lg:gap-4"
   >
     <div
-      class="flex flex-col gap-8 md:gap-12 text-semi-black lg:text-white max-w-full lg:max-w-[420px]"
+      class=" flex flex-col gap-8 md:gap-12 text-semi-black lg:text-white max-w-full lg:max-w-[420px]"
     >
       <div class="mb-4">
         <img
-          loading="lazy"
-          src="white-logo.png"
-          alt="footer-logo"
-          class="hidden lg:block w-24 h-24 object-cover"
-        />
-        <img
-          loading="lazy"
-          src="logo.webp"
-          alt="footer-logo"
-          class="block mx-auto lg:hidden w-24 h-24 object-cover"
-        />
+  loading="lazy"
+  src="logo.webp"
+  srcset="
+    white-logo.png  (min-width: 1024px),
+    logo.webp       (max-width: 1023px)
+  "
+  alt="footer-logo"
+  class="w-24 h-24 object-cover mx-auto lg:mx-0"
+/>
       </div>
       <div *ngIf="isLoading" class="animate-pulse">
         <div class="h-6 bg-gray-200 rounded w-full"></div>

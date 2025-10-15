@@ -92,6 +92,8 @@ export class BlogPostComponent implements OnInit {
 
     blogObservable.subscribe({
       next: (response: BlogResponse) => {
+        console.log(response);
+        
         if (!response.blog) {
           this.redirectToBlogList();
           return;

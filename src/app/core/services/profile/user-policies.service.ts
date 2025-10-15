@@ -1,4 +1,4 @@
-import { HttpClient, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { API_CONFIG } from '@core/conf/api.config';
 import { Observable } from 'rxjs';
@@ -237,15 +237,8 @@ export class PoliciesService {
     policyId: number,
     type: string
   ): Observable<PolicyCommentsResponse> {
-    const params = {
-      type: type,
-    };
-    if (!policyId) {
-      throw new Error('Policy ID is required');
-    }
     return this._http.get<PolicyCommentsResponse>(
-      `${this.baseUrl}app-policies/policy-single/${policyId}`,
-      { params }
+      `${this.baseUrl}app-policies/policy-single/${policyId}?type=${type}`
     );
   }
 

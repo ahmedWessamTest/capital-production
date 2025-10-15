@@ -222,7 +222,7 @@
             </div>
           </div>
 
-          <button type="submit" class="submit-form-long mt-2 h-[60px] md:h-[80px]">{{ 'pages.contact.SUBMIT_MESSAGE' | translate }}</button>
+          <button type="submit" class="submit-form-long mt-2 h-[60px] md:h-[80px]">{{isSubmitting()? ("pages.home_form.loading" | translate): ('pages.contact.SUBMIT_MESSAGE' | translate) }}</button>
         </form>
       </div>
     }

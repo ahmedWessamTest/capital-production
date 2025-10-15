@@ -296,7 +296,6 @@
       <!-- Desktop Nav Links (Hidden on mobile) -->
       <div class="hidden lg:flex items-center gap-[2vw]">
         <!-- Home -->
-        <!-- Home -->
         <div class="relative nav-link">
           <a
             [routerLink]="['/', currentLanguage.toLowerCase(), 'home']"
@@ -318,90 +317,128 @@
             {{ "about" | translate }}
           </a>
         </div>
-        <div class="relative nav-link flex gap-1 items-center">
-  <!-- Trigger -->
-  <div
-    class="flex gap-1 items-center cursor-pointer text-[#154876] text-[1.5vw] font-['Alexandria'] capitalize hover:text-sky-400 transition"
-    (click)="toggleDropdown()"
-  >
-    {{ "insurance" | translate }}
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="h-4 w-4 transition-transform"
-      [class.rotate-180]="isDropdownOpen"
-    >
-      <polyline points="6 9 12 15 18 9"></polyline>
-    </svg>
-  </div>
+        <div class="relative group nav-link flex gap-1 items-center">
+          <div
+            class="flex gap-1 items-center cursor-default text-[#154876] text-[1.5vw] font-['Alexandria'] capitalize hover:text-sky-400 transition"
+          >
+            {{ "insurance" | translate }}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="h-4 w-4 transition-transform group-hover:rotate-180"
+            >
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
 
-  <!-- Dropdown -->
-  <div
-    class="absolute mt-2 top-[100%] w-[260px] bg-neutral-200 rounded-2xl shadow-lg transition-all duration-300 ease-in-out"
-    [class.opacity-0]="!isDropdownOpen"
-    [class.invisible]="!isDropdownOpen"
-    [class.translate-y-[-10px]]="!isDropdownOpen"
-    [class.opacity-100]="isDropdownOpen"
-    [class.visible]="isDropdownOpen"
-    [class.translate-y-0]="isDropdownOpen"
-  >
-    <!-- Motor Insurance -->
-    <a
-      [routerLink]="['/', currentLanguage.toLowerCase(), 'motor-insurance']"
-      class="rounded-t-2xl hover:bg-neutral-300 hover:text-sky-400 transition cursor-pointer"
-      (click)="closeDropdown()"
-    >
-      <div class="flex items-center gap-2 px-4 py-2 text-base font-normal font-['Alexandria'] capitalize">
-        <img loading="lazy" src="drop-2.png" alt="Motor Icon" class="w-7 h-7" width="28" height="28" />
-        {{ "motor_insurance" | translate }}
-      </div>
-    </a>
+          <!-- Desktop Dropdown Menu -->
+          <div
+            class="absolute mt-2 top-[100%] w-[260px] bg-neutral-200 rounded-2xl shadow-lg transition-all duration-300 ease-in-out opacity-0 invisible translate-y-[-10px] group-hover:opacity-100 group-hover:visible group-hover:translate-y-0"
+          >
+            <!-- Motor Insurance -->
+            <a
+              [routerLink]="[
+                '/',
+                currentLanguage.toLowerCase(),
+                'motor-insurance'
+              ]"
+              class="rounded-t-2xl hover:bg-neutral-300 hover:text-sky-400 transition cursor-pointer"
+            >
+              <div
+                class="flex items-center gap-2 px-4 py-2 text-base font-normal font-['Alexandria'] capitalize"
+              >
+                <img
+                  loading="lazy"
+                  src="drop-2.png"
+                  alt="Motor Icon"
+                  class="w-7 h-7"
+                  width="28"
+                  height="28"
+                />
+                {{ "motor_insurance" | translate }}
+              </div>
+            </a>
 
-    <!-- Property Insurance -->
-    <a
-      [routerLink]="['/', currentLanguage.toLowerCase(), 'building-insurance']"
-      class="hover:bg-neutral-300 hover:text-sky-400 transition cursor-pointer"
-      (click)="closeDropdown()"
-    >
-      <div class="flex items-center gap-2 px-4 py-2 text-base font-normal font-['Alexandria'] capitalize">
-        <img loading="lazy" src="drop-1.png" alt="Property Icon" class="w-7 h-7" width="28" height="28" />
-        {{ "property_insurance" | translate }}
-      </div>
-    </a>
+            <!-- Property Insurance -->
+            <a
+              [routerLink]="[
+                '/',
+                currentLanguage.toLowerCase(),
+                'building-insurance'
+              ]"
+              class="hover:bg-neutral-300 hover:text-sky-400 transition cursor-pointer"
+            >
+              <div
+                class="flex items-center gap-2 px-4 py-2 text-base font-normal font-['Alexandria'] capitalize"
+              >
+                <img
+                  loading="lazy"
+                  src="drop-1.png"
+                  alt="Property Icon"
+                  class="w-7 h-7"
+                  width="28"
+                  height="28"
+                />
+                {{ "property_insurance" | translate }}
+              </div>
+            </a>
 
-    <!-- Medical Insurance -->
-    <a
-      [routerLink]="['/', currentLanguage.toLowerCase(), 'medical-insurance']"
-      class="hover:bg-neutral-300 hover:text-sky-400 transition cursor-pointer"
-      (click)="closeDropdown()"
-    >
-      <div class="flex items-center gap-2 px-4 py-2 text-base font-normal font-['Alexandria'] capitalize">
-        <img loading="lazy" src="drop-3.png" alt="Medical Icon" class="w-7 h-7" width="28" height="28" />
-        {{ "medical_insurance" | translate }}
-      </div>
-    </a>
+            <!-- Medical Insurance -->
+            <a
+              [routerLink]="[
+                '/',
+                currentLanguage.toLowerCase(),
+                'medical-insurance'
+              ]"
+              class="rounded-b-2xl hover:bg-neutral-300 hover:text-sky-400 transition cursor-pointer pb-3"
+            >
+              <div
+                class="flex items-center gap-2 px-4 py-2 text-base font-normal font-['Alexandria'] capitalize"
+              >
+                <img
+                  loading="lazy"
+                  src="drop-3.png"
+                  alt="Medical Icon"
+                  class="w-7 h-7"
+                  width="28"
+                  height="28"
+                />
+                {{ "medical_insurance" | translate }}
+              </div>
+            </a>
 
-    <!-- Job Insurance -->
-    <a
-      [routerLink]="['/', currentLanguage.toLowerCase(), 'job-insurance']"
-      class="rounded-b-2xl hover:bg-neutral-300 hover:text-sky-400 transition cursor-pointer pb-3"
-      (click)="closeDropdown()"
-    >
-      <div class="flex items-center gap-2 px-4 py-2 text-base font-normal font-['Alexandria'] capitalize">
-        <img loading="lazy" src="drop-4.png" alt="Job Icon" class="w-7 h-7" width="28" height="28" />
-        {{ "jop_insurance" | translate }}
-      </div>
-    </a>
-  </div>
-</div>
-
+            <!-- Job Insurance -->
+            <a
+              [routerLink]="[
+                '/',
+                currentLanguage.toLowerCase(),
+                'job-insurance'
+              ]"
+              class="rounded-b-2xl hover:bg-neutral-300 hover:text-sky-400 transition cursor-pointer pb-3"
+            >
+              <div
+                class="flex items-center gap-2 px-4 py-2 text-base font-normal font-['Alexandria'] capitalize"
+              >
+                <img
+                  loading="lazy"
+                  src="drop-4.png"
+                  alt="Medical Icon"
+                  class="w-7 h-7"
+                  width="28"
+                  height="28"
+                />
+                {{ "jop_insurance" | translate }}
+              </div>
+            </a>
+          </div>
+        </div>
 
         <!-- Blogs -->
         <div class="relative nav-link" class="text-center cursor-pointer">
@@ -707,14 +744,8 @@
         }
       </div>
     </div>
-
-    <!-- Second Row - Mobile Navigation Links (Tablet/Small Desktop) -->
-    <div class="relative w-full lg:hidden border-t border-white">
-      <!-- Scrollable navigation container -->
-      <div class="overflow-x-scroll w-full">
-        <div class="z-50 mx-auto flex items-center">
-          <!-- Mobile menu button -->
-          <div class="md:hidden">
+    <!-- side nav btn -->
+<div class="lg:hidden">
             <button
               (click)="toggleMobileMenu()"
               class="text-sky-900 focus:outline-none p-2 cursor-pointer"
@@ -738,172 +769,10 @@
               </svg>
             </button>
           </div>
-
-          <!-- Navigation links -->
-          <div class="py-4 flex justify-center items-center gap-6 text-[12px]">
-            <!-- Your navigation links here (keep them the same) -->
-            <div class="relative mobile-nav-link">
-              <a
-                [routerLink]="['/', currentLanguage.toLowerCase(), 'home']"
-                routerLinkActive="mobile-active-link"
-                class="text-sky-300 font-bold font-['Alexandria'] capitalize hover:text-sky-400 transition whitespace-nowrap"
-              >
-                {{ "home" | translate }}
-              </a>
-            </div>
-
-            <!-- About Us -->
-            <div class="relative mobile-nav-link">
-              <a
-                [routerLink]="['/', currentLanguage.toLowerCase(), 'about']"
-                routerLinkActive="mobile-active-link"
-                class="text-sky-900 font-normal font-['Alexandria'] capitalize hover:text-sky-400 transition whitespace-nowrap"
-              >
-                {{ "about" | translate }}
-              </a>
-            </div>
-            <!-- Insurance with Dropdown - this is the important part -->
-            <div
-              class="relative group mobile-nav-link cursor-pointer"
-              style="position: static"
-            >
-              <div
-                class="text-sky-900 cursor-pointer font-normal font-['Alexandria'] capitalize hover:text-sky-400 transition flex items-center gap-0.5 whitespace-nowrap"
-              >
-                {{ "insurance" | translate }}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="h-2.5 w-2.5 transition-transform group-hover:rotate-180"
-                >
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </div>
-
-              <!-- Dropdown Menu - now positioned relative to the outer container -->
-              <div
-                class="absolute z-[100] left-0 mt-1 w-[180px] cursor-pointer bg-neutral-200 rounded-xl shadow-lg transition-all duration-300 ease-in-out opacity-0 invisible translate-y-[-10px] group-hover:opacity-100 group-hover:visible group-hover:translate-y-0"
-              >
-                <!-- Dropdown items (keep them the same) -->
-                <!-- Motor Insurance -->
-                <a
-                  [routerLink]="[
-                    '/',
-                    currentLanguage.toLowerCase(),
-                    'motor-insurance'
-                  ]"
-                  class="rounded-t-xl hover:bg-neutral-300 hover:text-sky-400 transition cursor-pointer block"
-                >
-                  <div
-                    class="flex items-center gap-2 px-3 py-1.5 text-xs font-normal font-['Alexandria'] capitalize"
-                  >
-                    <img
-                      loading="lazy"
-                      src="drop-2.png"
-                      alt="Motor Icon"
-                      class="w-4 h-4"
-                      
-                    />
-                    {{ "motor_insurance" | translate }}
-                  </div>
-                </a>
-
-                <!-- Property Insurance -->
-                <a
-                  [routerLink]="[
-                    '/',
-                    currentLanguage.toLowerCase(),
-                    'building-insurance'
-                  ]"
-                  class="hover:bg-neutral-300 hover:text-sky-400 transition cursor-pointer block"
-                >
-                  <div
-                    class="flex items-center gap-2 px-3 py-1.5 text-xs font-normal font-['Alexandria'] capitalize"
-                  >
-                    <img
-                      loading="lazy"
-                      src="drop-1.png"
-                      alt="Property Icon"
-                      class="w-4 h-4"
-                    />
-                    {{ "property_insurance" | translate }}
-                  </div>
-                </a>
-
-                <!-- Medical Insurance -->
-                <a
-                  [routerLink]="[
-                    '/',
-                    currentLanguage.toLowerCase(),
-                    'medical-insurance'
-                  ]"
-                  class="rounded-b-xl hover:bg-neutral-300 hover:text-sky-400 transition cursor-pointer block"
-                >
-                  <div
-                    class="flex items-center gap-2 px-3 py-1.5 text-xs font-normal font-['Alexandria'] capitalize"
-                  >
-                    <img
-                      loading="lazy"
-                      src="drop-3.png"
-                      alt="Medical Icon"
-                      class="w-4 h-4"
-                    />
-                    {{ "medical_insurance" | translate }}
-                  </div>
-                </a>
-              </div>
-            </div>
-            <!-- Blogs -->
-            <div class="relative mobile-nav-link cursor-pointer">
-              <a
-                [routerLink]="[
-                  currentLanguage.toLowerCase(),
-                  currentLanguage.toLowerCase() === 'en'
-                    ? 'english-blogs'
-                    : 'arabic-blogs'
-                ]"
-                routerLinkActive="mobile-active-link"
-                class="text-sky-900 font-normal font-['Alexandria'] capitalize hover:text-sky-400 transition whitespace-nowrap"
-              >
-                {{ "blogs" | translate }}
-              </a>
-            </div>
-
-            <!-- Contact Us -->
-            <div class="relative mobile-nav-link">
-              <a
-                [routerLink]="['/', currentLanguage.toLowerCase(), 'contact']"
-                routerLinkActive="mobile-active-link"
-                class="text-sky-900 font-normal font-['Alexandria'] capitalize hover:text-sky-400 transition whitespace-nowrap"
-              >
-                {{ "contact" | translate }}
-              </a>
-            </div>
-
-            <!-- Claims Button -->
-            <a
-              [routerLink]="['/', currentLanguage.toLowerCase(), 'claims-info']"
-            >
-              <button
-                class="hidden cursor-pointer md:block bg-sky-400 text-white font-semibold font-['Alexandria'] capitalize px-2 py-1 sm:px-3 sm:py-1.5 rounded-[25px] shadow-[0_2px_2px_rgba(0,0,0,0.25)] hover:bg-sky-500 transition text-[10px] sm:text-xs whitespace-nowrap"
-              >
-                {{ "claims" | translate }}
-              </button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+   
 
     <!-- Mobile Menu Overlay (Only for small screens) -->
-    <div *ngIf="isMobileMenuOpen" class="fixed inset-0 z-50 md:hidden flex">
+    <div *ngIf="isMobileMenuOpen" class="fixed inset-0 z-50 lg:hidden flex">
       <div
         class="w-md flex h-[100vh] fill-height overflow-y-auto bg-white flex-col shadow-2xl"
         (click)="$event.stopPropagation()"
@@ -984,53 +853,33 @@
                 class="ml-4 space-y-1 border-l-2 border-sky-200 pl-4"
               >
                 <a
-                  [routerLink]="[
-                    '/',
-                    currentLanguage.toLowerCase(),
-                    'motor-insurance'
-                  ]"
-                >
-                  <button
-                    (click)="selectOption('motor'); closeMobileMenu()"
-                    routerLink="['/', currentLanguage.toLowerCase(), 'motor-insurance']"
+                  (click)="selectOption('motor'); closeMobileMenu()"
+                    [routerLink]="['/', currentLanguage.toLowerCase(), 'motor-insurance']"
                     class="w-full flex cursor-pointer items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:text-sky-400 hover:bg-sky-50 rounded-lg transition"
-                  >
-                    <img
+                >
+                                       <img src="drop-2.png" alt="Property Icon" class="w-4 h-4" loading="lazy"/>
+                    {{ "motor_insurance" | translate }}
+                </a>
+                <a
+                  (click)="selectOption('property'); closeMobileMenu()"
+                    [routerLink]="['/', currentLanguage.toLowerCase(), 'building-insurance']"
+                    class="w-full flex cursor-pointer items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:text-sky-400 hover:bg-sky-50 rounded-lg transition"
+                >
+                  
+                   <img
                       loading="lazy"
                       src="drop-1.png"
-                      alt="Motor Icon"
+                      alt="property Icon"
                       class="w-4 h-4"
                     />
-                    {{ "motor_insurance" | translate }}
-                  </button>
-                </a>
-                <a
-                  [routerLink]="[
-                    '/',
-                    currentLanguage.toLowerCase(),
-                    'building-insurance'
-                  ]"
-                >
-                  <button
-                    routerLink="['/', currentLanguage.toLowerCase(), 'building-insurance']"
-                    class="w-full flex cursor-pointer items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:text-sky-400 hover:bg-sky-50 rounded-lg transition"
-                  >
-                    <img src="drop-2.png" alt="Property Icon" class="w-4 h-4" />
                     {{ "property_insurance" | translate }}
-                  </button>
                 </a>
                 <a
-                  [routerLink]="[
-                    '/',
-                    currentLanguage.toLowerCase(),
-                    'medical-insurance'
-                  ]"
-                >
-                  <button
-                    (click)="selectOption('medical'); closeMobileMenu()"
-                    routerLink="['/', currentLanguage.toLowerCase(), 'medical-insurance']"
+                  (click)="selectOption('medical'); closeMobileMenu()"
+                    [routerLink]="['/', currentLanguage.toLowerCase(), 'medical-insurance']"
                     class="w-full flex cursor-pointer items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:text-sky-400 hover:bg-sky-50 rounded-lg transition"
-                  >
+                >
+                  
                     <img
                       loading="lazy"
                       src="drop-3.png"
@@ -1038,7 +887,20 @@
                       class="w-4 h-4"
                     />
                     {{ "medical_insurance" | translate }}
-                  </button>
+                </a>
+                <a
+                  (click)="selectOption('medical'); closeMobileMenu()"
+                    [routerLink]="['/', currentLanguage.toLowerCase(), 'job-insurance']"
+                    class="w-full flex cursor-pointer items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:text-sky-400 hover:bg-sky-50 rounded-lg transition"
+                >
+                  
+                    <img
+                      loading="lazy"
+                      src="drop-4.png"
+                      alt="jop Icon"
+                      class="w-4 h-4"
+                    />
+                    {{ "jop_insurance" | translate }}
                 </a>
               </div>
             </div>

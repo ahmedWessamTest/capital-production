@@ -398,7 +398,7 @@
       },
       "deactivate_alert":{
         "deactivate_this_account":"Deactivate This Account?",
-        "deactivate_btn":"Delete"
+        "deactivate_btn":"Deactivate"
       }
       
     },
@@ -538,14 +538,14 @@
       "alerts": {
         "building_request": "🛠️ We’re building your request behind the scenes. Get ready.",
         "call_request_success": "Call request sent successfully",
-        "call_request_contact": "Your call request has been sent and you will be contacted as soon as possible through your phone number {phone}",
-        "building_request_contact": "Your call request has been sent and you will be contacted as soon as possible through your phone number {phone}",
+        "call_request_contact": "Your call request has been sent and you will be contacted as soon as possible",
+        "building_request_contact": "Your call request has been sent and you will be contacted as soon as possible",
         "call_request_thanks": "Thank you for your interest in Capital Insurance",
         "back_button": "Back",
         "building_request_thanks": "Thank you for your interest in Capital Insurance",
         "policy_submitted": "Insurance submitted successfully",
         "policy_review": "Your request will be carefully reviewed and a customer service representative will contact you",
-        "request_code": "Request code: #{id}"
+        "request_code": "Request code: #{{id}}"
       },
       "errors": {
         "data_fetch_failed": "Failed to fetch motor data",
@@ -1097,7 +1097,7 @@
         "email_required": "Email is required",
         "email_invalid": "Please enter a valid email address",
         "phoneNumber_required": "Phone number is required",
-        "phone_invalid": "Please enter a valid phone number (10-15 digits)",
+        "phone_invalid": "Please enter a valid phone number ",
         "selectedPolicy_required": "Policy is required",
         "message_required": "Message is required",
         "message_minlength": "Message is too short (min {{length}} characters)",

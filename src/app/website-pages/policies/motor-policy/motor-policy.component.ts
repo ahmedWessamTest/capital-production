@@ -333,6 +333,7 @@ email: false,
         tap(response => {
           this.leadId = response.data.id;
           let buttonLabel = this.translate.instant('pages.motor_policy.alerts.back_button');
+          console.log(response);
           this.alertService.showCallRequest({
             messages: [
               this.translate.instant('pages.motor_policy.alerts.call_request_success'),
@@ -678,7 +679,7 @@ updateUserData(): void {
           messages: [
             this.translate.instant('pages.motor_policy.alerts.policy_submitted'),
             this.translate.instant('pages.motor_policy.alerts.policy_review'),
-            `${this.translate.instant('pages.motor_policy.alerts.request_code')} ${response.data.id}`
+            this.translate.instant('pages.motor_policy.alerts.request_code',{id:response.data.id})
           ],
           buttonLabel: this.translate.instant('pages.motor_policy.alerts.back_button'),
           redirectRoute: `/${lang}/policies`

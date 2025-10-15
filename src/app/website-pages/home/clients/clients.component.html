@@ -57,6 +57,7 @@
                    [alt]="client.alt"
                    loading="lazy"
                    decoding="async"
+                   (error)="onImageError(client.name, $event)"
                    (load)="onImageLoad(client.name)"
                    [ngClass]="{'opacity-0': !isImageLoaded[client.name], 'opacity-100': isImageLoaded[client.name]}">
             </div>

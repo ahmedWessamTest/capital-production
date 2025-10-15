@@ -117,6 +117,7 @@ export class ProfileComponent implements OnInit {
       confirmText: this._translateService.instant("pages.profile.deactivate_alert.deactivate_btn"),
       cancelText: this._translateService.instant('common.cancel'),
       imagePath: "common/after-remove.webp",
+      dangerBtn:true,
       onConfirm: () => {
         this.deactivateUser();
       }
@@ -155,6 +156,7 @@ export class ProfileComponent implements OnInit {
       confirmText: this._translateService.instant("pages.profile.delete_alert.delete_btn"),
       cancelText: this._translateService.instant('common.cancel'),
       imagePath: "common/after-remove.webp",
+      dangerBtn:true,
       onConfirm: () => {
         this.deleteUser();
       }

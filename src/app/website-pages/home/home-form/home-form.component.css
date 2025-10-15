@@ -50,7 +50,6 @@ input[readonly]{
   display: flex;
   gap: clamp(6px, 0.75vw, 12px);
   justify-content: center;
-  position: absolute;
   top: clamp(16px, 2vw, 26px);
   left: 50%;
   transform: translateX(-50%);

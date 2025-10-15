@@ -595,7 +595,7 @@
         "building_request_thanks": "شكرًا لاهتمامك بشركة كابيتال للتأمين",
         "policy_submitted": "تم تقديم التأمين بنجاح",
         "policy_review": "سيتم مراجعة طلبك بعناية وسيتواصل معك ممثل خدمة العملاء",
-        "request_code": "كود الطلب: #{id}"
+        "request_code": "كود الطلب: #{{id}}"
       },
       "errors": {
         "data_fetch_failed": "فشل في جلب بيانات التأمين على السيارات",
@@ -1101,7 +1101,7 @@
 "job_price_min": "الحد الأدنى لمبلغ التأمين هو 50,000 جنيه مصري",
 "price_max": "الحد الأقصى لمبلغ التأمين هو {{max}} جنيه مصري",
         "phoneNumber_required": "رقم الهاتف مطلوب",
-        "phone_invalid": "يرجى إدخال رقم هاتف صحيح (10-15 رقمًا)",
+        "phone_invalid": "يرجى إدخال رقم هاتف صحيح",
         "selectedPolicy_required": "البوليصة مطلوبة",
         "message_required": "الرسالة مطلوبة",
         "message_minlength": "الرسالة قصيرة جدًا (الحد الأدنى {{length}} أحرف)",

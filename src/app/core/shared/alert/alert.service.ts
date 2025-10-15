@@ -18,6 +18,7 @@ export interface AlertConfig {
   secondaryImagePath?: string;
   alertType: AlertType;
   email?: string;
+  dangerBtn?:boolean;
   translationKeys?: {
     title?: string;
     message?: string;

@@ -214,4 +214,9 @@ export class ClientsComponent implements OnInit, OnDestroy, OnChanges {
   next(): void {
     this.owlCarousel.next();
   }
+  onImageError(clientName: string, event: Event): void {
+  const target = event.target as HTMLImageElement;
+  target.src = 'logo.webp';
+  this.isImageLoaded[clientName] = true;
+}
 }
