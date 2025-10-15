@@ -1,16 +1,16 @@
 import { Component, inject, signal, PLATFORM_ID } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { LanguageService } from '../../../core/services/language.service';
 import { AlertService } from '../../../core/shared/alert/alert.service';
 import { animate, query, stagger, state, style, transition, trigger } from '@angular/animations';
-import { AsyncPipe, CommonModule, isPlatformBrowser } from '@angular/common';
+import {  CommonModule, isPlatformBrowser } from '@angular/common';
 import { Subject, takeUntil } from 'rxjs';
 @Component({
   selector: 'app-set-password',
-  imports: [CommonModule, TranslateModule, ReactiveFormsModule, AsyncPipe, RouterLink],
+  imports: [CommonModule, TranslateModule, ReactiveFormsModule ],
   templateUrl: './set-password.component.html',
   styleUrl: './set-password.component.css',
   animations: [

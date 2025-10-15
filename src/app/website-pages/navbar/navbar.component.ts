@@ -18,6 +18,8 @@ import { PhoneFormatPipe } from '@core/pipes/phone-format.pipe';
   imports: [CommonModule, TranslateModule, RouterLink, RouterLinkActive,PhoneFormatPipe]
 })
 export class NavbarComponent implements OnInit, OnDestroy {
+  isDropdownOpen =  false;
+
   isMenuOpen = false;
   isLanguageMenuOpen = false;
   isProfileMenuOpen = false;
@@ -329,20 +331,29 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('document:click', ['$event'])
-  onDocumentClick(event: Event): void {
-    if (isPlatformBrowser(this.platformId) && event.target instanceof Element) {
-      if (!event.target.closest('.nav-link.group') &&
-          !event.target.closest('.language-dropdown-container') &&
-          !event.target.closest('.profile-dropdown-container')) {
-        this.isMenuOpen = false;
-        this.isLanguageMenuOpen = false;
-        this.isProfileMenuOpen = false;
-      }
-      if (!event.target.closest('.mobile-nav-link')) {
-        this.isTabletMenuOpen = false;
-      }
-    }
+onDocumentClick(event: Event): void {
+  if (!isPlatformBrowser(this.platformId)) return;
+
+  const target = event.target as HTMLElement;
+  if (!(target instanceof Element)) return;
+
+  const clickedInsideNav = target.closest('.nav-link');
+  const clickedInsideLanguage = target.closest('.language-dropdown-container');
+  const clickedInsideProfile = target.closest('.profile-dropdown-container');
+  const clickedInsideMobileNav = target.closest('.mobile-nav-link');
+
+  if (!clickedInsideNav && !clickedInsideLanguage && !clickedInsideProfile) {
+    this.isMenuOpen = false;
+    this.isLanguageMenuOpen = false;
+    this.isProfileMenuOpen = false;
+    this.isDropdownOpen = false;
   }
+
+  if (!clickedInsideMobileNav) {
+    this.isTabletMenuOpen = false;
+  }
+}
+
 
   @HostListener('document:keydown.escape', ['$event'])
   onEscapeKey(): void {
@@ -355,4 +366,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.isProfileMenuOpen = false;
     }
   }
+  toggleDropdown() {
+  this.isDropdownOpen = !this.isDropdownOpen;
+}
+
+closeDropdown() {
+  this.isDropdownOpen = false;
+}
+
 }
